@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Register any found item</h1>
+
+<h3> {{ error }} </h3>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+</form>
+
+<h1>Found items</h1>
+<ul>
+    {% for item in items %}                   
+        <li>{{ item.item }}, {{ item.description }}, {{ item.created }} </li>   
+    {% endfor %}
+</ul>
+</body>
+</html>

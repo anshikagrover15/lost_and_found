@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Register any lost item</h1>
+
+<h3> {{ error }} </h3>
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+</form>
+
+<h1>Lost items</h1>
+<ul>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Item</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Photo</th>
+            </tr>
+            {% for item in items %}                   
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.item }}</td>
+                    <td>{{ item.location }}</td>
+                    <td>{{ item.description }}</td>
+                    {% if item.photo and item.photo.url %}
+                    <td><img src="{{ item.photo.url }}" alt="Photo not Available"></td>
+                    {% else %}
+                    <td>Photo not Available</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </table> 
+</ul>
+</body>
+</html>
